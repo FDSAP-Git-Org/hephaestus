@@ -1,4 +1,4 @@
-package logs
+package apilogs
 
 import (
 	"encoding/json"
