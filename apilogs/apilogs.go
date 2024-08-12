@@ -58,9 +58,9 @@ func SystemLog(class, folder, filename, process string, request, response interf
 
 	Separator.Println("")
 	InfoLogger.Println(class + ": - - - - : " + strings.ToUpper(process) + " : - - - -")
-	InfoLogger.Println(class + ": PROCESS TIME: " + currentTime.Format(time.DateTime))
-	InfoLogger.Println(class + ": REQUEST: " + string(strRequest))
-	InfoLogger.Println(class + ": RESPONSE: " + string(strResponse))
+	InfoLogger.Println(class + ": PROCESS TIME	: " + currentTime.Format(time.DateTime))
+	InfoLogger.Println(class + ": REQUEST		: " + string(strRequest))
+	InfoLogger.Println(class + ": RESPONSE		: " + string(strResponse))
 
 	fmt.Println("New system log entry:", currentTime.Format(time.DateTime))
 }
