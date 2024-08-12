@@ -23,6 +23,6 @@
 Paste the following code into your project's terminal.
 <pre>
 <code class="language-go">
-go get -u github.com/FDSAP-Git-Org/fdsap 
+go get -u github.com/FDSAP-Git-Org/hephaestus
 </code>
 </pre>
