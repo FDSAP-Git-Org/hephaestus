@@ -2,15 +2,15 @@ package encryption
 
 import "golang.org/x/crypto/bcrypt"
 
-// HashPassword ...
-func HashPassword(password string) (string, error) {
-	bytes, err := bcrypt.GenerateFromPassword([]byte(password), 14)
+// Hash string ...
+func GenerateHash(text string) (string, error) {
+	bytes, err := bcrypt.GenerateFromPassword([]byte(text), 14)
 	return string(bytes), err
 }
 
-// CheckPasswordHash ...
-func CheckPasswordHash(password, hash string) bool {
-	err := bcrypt.CompareHashAndPassword([]byte(hash), []byte(password))
+// Validate hash string...
+func ValidateHash(text, hash string) bool {
+	err := bcrypt.CompareHashAndPassword([]byte(hash), []byte(text))
 	return err == nil
 }
 

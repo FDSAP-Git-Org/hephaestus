@@ -48,6 +48,11 @@ func EncryptRequest(text interface{}, secretKey string) (string, error) {
 	return encodeBase64(cipherText), nil
 }
 
+func CreateSeal(text interface{}, secretKey string) (string, error) {
+	
+	return "", nil
+}
+
 // Decrypt method is to extract back the encrypted text
 func Decrypt(text, secretKey string) (string, error) {
 	block, err := aes.NewCipher([]byte(secretKey))
