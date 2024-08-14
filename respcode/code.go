@@ -29,6 +29,12 @@ const (
 	ERR_CODE_100     = "100"
 	ERR_CODE_100_MSG = "Validation Failed."
 
+	ERR_CODE_100_CD     = "CD100"
+	ERR_CODE_100_CD_MSG = "Invalid credentials."
+
+	ERR_CODE_101_CD     = "CD101"
+	ERR_CODE_101_CD_MSG = "Invalid seal."
+
 	ERR_CODE_101     = "101"
 	ERR_CODE_101_MSG = "First Login: Password Reset Required."
 
@@ -103,4 +109,64 @@ const (
 
 	ERR_CODE_304     = "304"
 	ERR_CODE_304_MSG = "Failed to update data."
+
+	ERR_CODE_305     = "305"
+	ERR_CODE_305_MSG = "Token generation failed."
+
+	ERR_CODE_306     = "306"
+	ERR_CODE_306_MSG = "Failed to download file."
+
+	ERR_CODE_307     = "307"
+	ERR_CODE_307_MSG = "File creation failed."
+
+	ERR_CODE_308     = "308"
+	ERR_CODE_308_MSG = "URL retrieval failed."
+
+	ERR_CODE_309     = "309"
+	ERR_CODE_309_MSG = "Unable to open file."
+
+	ERR_CODE_310     = "310"
+	ERR_CODE_310_MSG = "Failed to unmarshal."
+
+	ERR_CODE_311     = "311"
+	ERR_CODE_311_MSG = "Failed to marshal."
+
+	ERR_CODE_312     = "312"
+	ERR_CODE_312_MSG = "Failed to load timezone."
+
+	ERR_CODE_313     = "313"
+	ERR_CODE_313_MSG = "HTML parsing failed."
+
+	ERR_CODE_314     = "314"
+	ERR_CODE_314_MSG = "Failed deleting of data."
+
+	ERR_CODE_315     = "315"
+	ERR_CODE_315_MSG = "Failed sending emails."
+
+	ERR_CODE_400     = "400"
+	ERR_CODE_400_MSG = "Bad request."
+
+	ERR_CODE_401     = "401"
+	ERR_CODE_401_MSG = "Missing required input."
+
+	ERR_CODE_402     = "402"
+	ERR_CODE_402_MSG = "Unauthorized access."
+
+	ERR_CODE_403     = "403"
+	ERR_CODE_403_MSG = "Unique field already exists"
+
+	ERR_CODE_404     = "404"
+	ERR_CODE_404_MSG = "Not found."
+
+	ERR_CODE_405     = "405"
+	ERR_CODE_405_MSG = "Failed to request."
+
+	ERR_CODE_500     = "500"
+	ERR_CODE_500_MSG = "Restricted"
+
+	ERR_CODE_501     = "501"
+	ERR_CODE_501_MSG = "Restricted IP."
+
+	ERR_CODE_502     = "502"
+	ERR_CODE_502_MSG = "Restricted username."
 )
