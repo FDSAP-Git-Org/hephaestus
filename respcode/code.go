@@ -35,6 +35,9 @@ const (
 	ERR_CODE_101_CD     = "CD101"
 	ERR_CODE_101_CD_MSG = "Invalid seal."
 
+	ERR_CODE_102_CD     = "CD102"
+	ERR_CODE_102_CD_MSG = "Invalid signature."
+
 	ERR_CODE_101     = "101"
 	ERR_CODE_101_MSG = "First Login: Password Reset Required."
 
@@ -100,6 +103,9 @@ const (
 
 	ERR_CODE_301     = "301"
 	ERR_CODE_301_MSG = "Failed to parse data."
+
+	ERR_CODE_301_PR     = "PR301"
+	ERR_CODE_301_PR_MSG = "Failed to parse token."
 
 	ERR_CODE_302     = "302"
 	ERR_CODE_302_MSG = "Failed to fetch data."
