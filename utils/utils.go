@@ -15,6 +15,7 @@ import (
 	"time"
 
 	"github.com/gofiber/fiber/v3"
+	"github.com/golang-jwt/jwt/v4"
 
 	"github.com/joho/godotenv"
 )
@@ -52,10 +53,18 @@ func GetResponseTime(c fiber.Ctx) string {
 	return connTime.Format(time.DateTime)
 }
 
+
+// GenerateResponse generates a response object with the process time and request
+// It takes in the response and the fiber context as parameters
+// and returns an interface{} as the response object
 func GenerateResponse(response interface{}, c fiber.Ctx) interface{} {
+	// Get the process time from the fiber context
+	processTime := GetResponseTime(c)
+
+	// Create a new EPResponse object with the process time and request
 	return EPResponse{
-		ProcessTime: GetResponseTime(c),
-		Response:    response,
+		ProcessTime: processTime, // Set the process time
+		Request:     response,     // Set the request
 	}
 }
 
@@ -165,10 +174,50 @@ func GenerateRandomStrings(maxLen int, letterType []string) string {
 	return letterBytes
 }
 
-// Recursive Fibonacci function
-func Fibonacci(number int) int {
-	if number <= 1 {
-		return number
+// GenerateJWTSignedString ...
+func GenerateJWTSignedString(secretKey []byte, texp time.Duration, claims interface{}) (string, error) {
+	// Create a new token object, specifying signing method and claims
+	token := jwt.NewWithClaims(jwt.SigningMethodHS256, jwt.MapClaims{
+		"body": claims,
+		"exp":  time.Now().Add(time.Hour * texp).Unix(),
+	})
+
+	// Sign and get the complete encoded token as a string using the secret key
+	tokenString, err := token.SignedString(secretKey)
+	if err != nil {
+		return "", err
 	}
-	return Fibonacci(number-1) + Fibonacci(number-2)
+
+	return tokenString, nil
+}
+
+// CustomClaims is a custom struct to store JWT claims
+type CustomClaims struct {
+	Body interface{} `json:"body"`
+	jwt.RegisteredClaims
+}
+
+func ReadJWTToken(secretKey []byte, tokenString string) (*CustomClaims, error) {
+	// Initialize a new instance of CustomClaims
+	claims := &CustomClaims{}
+
+	// Parse the token
+	token, err := jwt.ParseWithClaims(tokenString, claims, func(token *jwt.Token) (interface{}, error) {
+		return secretKey, nil
+	})
+
+	// Check if there was an error parsing the token
+	if err != nil {
+		if err == jwt.ErrSignatureInvalid {
+			return nil, err
+		}
+		return nil, err
+	}
+
+	// Check if the token is valid
+	if !token.Valid {
+		return nil, err
+	}
+
+	return claims, nil
 }
