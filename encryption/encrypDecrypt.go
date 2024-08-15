@@ -5,6 +5,8 @@ import (
 	"crypto/cipher"
 	"encoding/base64"
 	"encoding/json"
+	"fmt"
+	"log"
 )
 
 var iv = []byte{35, 46, 57, 24, 85, 35, 24, 74, 87, 35, 88, 98, 66, 32, 13, 05}
@@ -49,7 +51,11 @@ func EncryptRequest(text interface{}, secretKey string) (string, error) {
 }
 
 func CreateSeal(text interface{}, secretKey string) (string, error) {
-	
+	log.Println("SBODY:", text)
+	msString, _ := json.Marshal(text)
+
+	fmt.Println("MARSHAL:", string(msString))
+	// GenerateHash(text)
 	return "", nil
 }
 
