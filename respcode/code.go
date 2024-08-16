@@ -149,6 +149,12 @@ const (
 	ERR_CODE_315     = "315"
 	ERR_CODE_315_MSG = "Failed sending emails."
 
+	ERR_CODE_316     = "316"
+	ERR_CODE_316_MSG = "Failed encrypt data."
+
+	ERR_CODE_317     = "317"
+	ERR_CODE_317_MSG = "Failed decrypt data."
+
 	ERR_CODE_400     = "400"
 	ERR_CODE_400_MSG = "Bad request."
 
