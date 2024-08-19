@@ -155,6 +155,18 @@ const (
 	ERR_CODE_317     = "317"
 	ERR_CODE_317_MSG = "Failed decrypt data."
 
+	ERR_CODE_318     = "318"
+	ERR_CODE_318_MSG = "Failed to fetch database data."
+
+	ERR_CODE_319     = "319"
+	ERR_CODE_319_MSG = "Failed to insert data in database."
+
+	ERR_CODE_330     = "330"
+	ERR_CODE_330_MSG = "Failed to update data in database."
+
+	ERR_CODE_331     = "331"
+	ERR_CODE_331_MSG = "Failed to delete data in database."
+
 	ERR_CODE_400     = "400"
 	ERR_CODE_400_MSG = "Bad request."
 
