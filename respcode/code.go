@@ -185,6 +185,9 @@ const (
 	ERR_CODE_405     = "405"
 	ERR_CODE_405_MSG = "Failed to request."
 
+	ERR_CODE_406     = "406"
+	ERR_CODE_406_MSG = "Record not found."
+
 	ERR_CODE_500     = "500"
 	ERR_CODE_500_MSG = "Restricted"
 
