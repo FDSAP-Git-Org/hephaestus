@@ -40,7 +40,7 @@ func CreateDirectory(path string) error {
 }
 
 // Default system log
-func SystemLog(class, folder, filename, process string, request, response interface{}) {
+func SystemLogger(class, folder, filename, process string, request, response interface{}) {
 	// Checking folder name if exists
 	currentTime := time.Now()
 	folderName := "./logs/" + strings.ToUpper(folder) + "/" + currentTime.Format("01-January")
@@ -65,7 +65,7 @@ func SystemLog(class, folder, filename, process string, request, response interf
 	fmt.Printf("New entry for %s: %v\n", strings.ToUpper(process), currentTime.Format(time.DateTime))
 }
 
-func APILog(class, folder, filename, process, status string, request, response interface{}) {
+func ApplicationLogger(class, folder, filename, process, status string, request, response interface{}) {
 	// Checking folder name if exists
 	currentTime := time.Now()
 	folderName := "./logs/" + strings.ToUpper(folder) + "/" + currentTime.Format("01-January")
@@ -91,7 +91,7 @@ func APILog(class, folder, filename, process, status string, request, response i
 	fmt.Printf("New entry for %s: %v\n", strings.ToUpper(process), currentTime.Format(time.DateTime))
 }
 
-func APIlErrorLog(class, folder, filename, process, code string, request, err interface{}) {
+func ApplicationErrorLogger(class, folder, filename, process, code string, request, err interface{}) {
 	// Checking folder name if exists
 	currentTime := time.Now()
 	folderName := "./logs/" + strings.ToUpper(folder) + "/" + currentTime.Format("01-January")
