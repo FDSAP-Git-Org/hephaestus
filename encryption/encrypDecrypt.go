@@ -9,12 +9,16 @@ import (
 	"log"
 )
 
-var iv = []byte{35, 46, 57, 24, 85, 35, 24, 74, 87, 35, 88, 98, 66, 32, 13, 05}
+var iv = []byte{35, 46, 57, 24, 85, 35, 24, 74, 87, 35, 88, 98, 66, 32, 13, 5}
 
 func encodeBase64(b []byte) string {
 	return base64.StdEncoding.EncodeToString(b)
 }
 
+<<<<<<<<<<<<<<  ✨ Codeium Command ⭐  >>>>>>>>>>>>>>>>
+// decodeBase64 decodes a given base64 string into a byte slice.
+// Panics if the string is not a valid base64 string.
+<<<<<<<  dc178924-238b-4cd3-8c39-7dc1ff3ef0b3  >>>>>>>
 func decodeBase64(s string) []byte {
 	data, err := base64.StdEncoding.DecodeString(s)
 	if err != nil {
