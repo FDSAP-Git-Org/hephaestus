@@ -65,7 +65,7 @@ func SystemLog(class, folder, filename, process string, request, response interf
 	fmt.Printf("New entry for %s: %v\n", strings.ToUpper(process), currentTime.Format(time.DateTime))
 }
 
-func APIlog(class, folder, filename, process, status string, request, response interface{}) {
+func APILog(class, folder, filename, process, status string, request, response interface{}) {
 	// Checking folder name if exists
 	currentTime := time.Now()
 	folderName := "./logs/" + strings.ToUpper(folder) + "/" + currentTime.Format("01-January")
@@ -91,7 +91,7 @@ func APIlog(class, folder, filename, process, status string, request, response i
 	fmt.Printf("New entry for %s: %v\n", strings.ToUpper(process), currentTime.Format(time.DateTime))
 }
 
-func APIlErrorog(class, folder, filename, process, code string, request, err interface{}) {
+func APIlErrorLog(class, folder, filename, process, code string, request, err interface{}) {
 	// Checking folder name if exists
 	currentTime := time.Now()
 	folderName := "./logs/" + strings.ToUpper(folder) + "/" + currentTime.Format("01-January")
