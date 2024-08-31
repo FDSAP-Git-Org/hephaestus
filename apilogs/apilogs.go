@@ -78,7 +78,7 @@ func ApplicationLogger(class, folder, filename, process, status string, request,
 	strRequest, _ := json.Marshal(request)
 	strResponse, _ := json.Marshal(response)
 
-	InfoLogger = log.New(file, "ERROR: ", log.Ldate|log.Ltime)
+	InfoLogger = log.New(file, "INFO: ", log.Ldate|log.Ltime)
 	Separator = log.New(file, "", log.Ldate|log.Ltime)
 
 	Separator.Println("")
@@ -104,7 +104,7 @@ func ApplicationErrorLogger(class, folder, filename, process, code string, reque
 	strRequest, _ := json.Marshal(request)
 	strResponse, _ := json.Marshal(err)
 
-	ErrorLogger = log.New(file, "INFO: ", log.Ldate|log.Ltime)
+	ErrorLogger = log.New(file, "ERROR: ", log.Ldate|log.Ltime)
 	Separator = log.New(file, "", log.Ldate|log.Ltime)
 
 	Separator.Println("")
