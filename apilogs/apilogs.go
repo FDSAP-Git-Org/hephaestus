@@ -108,39 +108,31 @@ func SystemLogger(class, folder, filename, process string, request, response int
 	fmt.Printf("New entry for %s: %v\n", strings.ToUpper(process), currentTime.Format(time.DateTime))
 }
 
-// ApplicationLogger logs the application logs in the specified folder and filename.
-// The file is created if it does not exist and the logs are appended to the file.
-// The logs are in the format of:
-// 2023/10/24 14:30:00 INFO: CLASS: - - - - : PROCESS : - - - -
-// 2023/10/24 14:30:00 INFO: CLASS: PROCESS TIME: 2023-10-24 14:30:00
-// 2023/10/24 14:30:00 INFO: CLASS: REQUEST: {"key":"value"}
-// 2023/10/24 14:30:00 INFO: CLASS: RESPONSE: {"key":"value"}
-// 2023/10/24 14:30:00 INFO: CLASS: STATUS: STATUS
-//
-// Parameters:
-// class - the class name of the application
-// folder - the folder name where the log file is located
-// filename - the filename of the log file
-// process - the name of the process
-// status - the status of the request
-// request - the request object
-// response - the response object
-//
-// Example:
-// folder := "test"
-// filename := "test"
-// process := "test"
-// request := map[string]string{"key": "value"}
-// response := map[string]string{"key": "value"}
-// status := "200"
-// ApplicationLogger("test", folder, filename, process, status, request, response)
-//
-// Output:
-// 2023/10/24 14:30:00 INFO: TEST: - - - - : TEST : - - - -
-// 2023/10/24 14:30:00 INFO: TEST: PROCESS TIME: 2023-10-24 14:30:00
-// 2023/10/24 14:30:00 INFO: TEST: REQUEST: {"key":"value"}
-// 2023/10/24 14:30:00 INFO: TEST: RESPONSE: {"key":"value"}
-// 2023/10/24 14:30:00 INFO: TEST: STATUS: 200
+func ApplicationLogger(class, folder, filename, process, status string, request, response interface{}) {
+	// Checking folder name if exists
+	currentTime := time.Now()
+	folderName := "./logs/" + strings.ToUpper(folder) + "/" + currentTime.Format("01-January")
+	CreateDirectory(folderName)
+	file, filErr := os.OpenFile(folderName+"/"+strings.ToLower(filename)+"-"+currentTime.Format("01022006")+".log", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0666)
+	if filErr != nil {
+		fmt.Println("error wrting the logs:", filErr.Error())
+	}
+
+	strRequest, _ := json.Marshal(request)
+	strResponse, _ := json.Marshal(response)
+
+	InfoLogger = log.New(file, "INFO: ", log.Ldate|log.Ltime)
+	Separator = log.New(file, "", log.Ldate|log.Ltime)
+
+	Separator.Println("")
+	InfoLogger.Println(class + ": - - - - : " + strings.ToUpper(process) + " : - - - -")
+	InfoLogger.Println(class + ": PROCESS TIME: " + currentTime.Format(time.DateTime))
+	InfoLogger.Println(class + ": REQUEST: " + string(strRequest))
+	InfoLogger.Println(class + ": RESPONSE: " + string(strResponse))
+	InfoLogger.Println(class + ": STATUS: " + status)
+
+	fmt.Printf("New entry for %s: %v\n", strings.ToUpper(process), currentTime.Format(time.DateTime))
+}
 
 // ApplicationErrorLogger logs the application logs in the specified folder and filename.
 // The file is created if it does not exist and the logs are appended to the file.
