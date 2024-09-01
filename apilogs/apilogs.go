@@ -23,7 +23,6 @@ var (
 //
 // Returns:
 // none
-//
 func CreateInitialFolder(folder []string) {
 	// Create first the root folder for logs
 	initLogFolder := "./logs/"
@@ -42,8 +41,8 @@ func CreateInitialFolder(folder []string) {
 //
 // Returns:
 // error - an error if the directory already exists or if there is an error
-//         creating the directory
 //
+//	creating the directory
 func CreateDirectory(path string) error {
 	// Check if the directory already exists
 	if _, err := os.Stat(path); os.IsNotExist(err) {
@@ -84,7 +83,6 @@ func CreateDirectory(path string) error {
 // 2023/10/24 14:30:00 INFO: TEST: PROCESS TIME: 2023-10-24 14:30:00
 // 2023/10/24 14:30:00 INFO: TEST: REQUEST: {"key":"value"}
 // 2023/10/24 14:30:00 INFO: TEST: RESPONSE: {"key":"value"}
-//
 func SystemLogger(class, folder, filename, process string, request, response interface{}) {
 	// Checking folder name if exists
 	currentTime := time.Now()
@@ -197,8 +195,8 @@ func ApplicationErrorLogger(class, folder, filename, process, code string, reque
 	ErrorLogger.Println(class + ": - - - - : " + strings.ToUpper(process) + " : - - - -")
 	ErrorLogger.Println(class + ": PROCESS TIME: " + currentTime.Format(time.DateTime))
 	ErrorLogger.Println(class + ": REQUEST: " + string(strRequest))
-	ErrorLogger.Println(class + ": CODE: " + code)
-	ErrorLogger.Println(class + ": ERROR: " + string(strResponse))
+	ErrorLogger.Println(class + ": ERROR CODE: " + code)
+	ErrorLogger.Println(class + ": ERROR MESSAGE: " + string(strResponse))
 
 	fmt.Printf("New entry for %s: %v\n", strings.ToUpper(process), currentTime.Format(time.DateTime))
 }
