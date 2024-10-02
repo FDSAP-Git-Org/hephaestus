@@ -106,6 +106,7 @@ func SystemLogger(class, folder, filename, process string, request, response int
 	InfoLogger.Println(class + ": RESPONSE: " + string(strResponse))
 
 	fmt.Printf("New entry for %s: %v\n", strings.ToUpper(process), currentTime.Format(time.DateTime))
+	file.Close()
 }
 
 func ApplicationLogger(class, folder, filename, process, status string, request, response interface{}) {
@@ -132,6 +133,7 @@ func ApplicationLogger(class, folder, filename, process, status string, request,
 	InfoLogger.Println(class + ": STATUS: " + status)
 
 	fmt.Printf("New entry for %s: %v\n", strings.ToUpper(process), currentTime.Format(time.DateTime))
+	file.Close()
 }
 
 // ApplicationErrorLogger logs the application logs in the specified folder and filename.
@@ -191,4 +193,5 @@ func ApplicationErrorLogger(class, folder, filename, process, code string, reque
 	ErrorLogger.Println(class + ": ERROR MESSAGE: " + string(strResponse))
 
 	fmt.Printf("New entry for %s: %v\n", strings.ToUpper(process), currentTime.Format(time.DateTime))
+	file.Close()
 }
