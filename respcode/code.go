@@ -122,6 +122,9 @@ const (
 	ERR_CODE_306     = "306"
 	ERR_CODE_306_MSG = "Failed to download file."
 
+	ERR_CODE_306_UP     = "306"
+	ERR_CODE_306_UP_MSG = "Failed to upload file."
+
 	ERR_CODE_307     = "307"
 	ERR_CODE_307_MSG = "File creation failed."
 
