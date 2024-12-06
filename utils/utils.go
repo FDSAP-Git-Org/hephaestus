@@ -189,5 +189,3 @@ func GenerateJWTSignedString(secretKey []byte, texp time.Duration, claims interf
 
 	return tokenString, nil
 }
-
-func GetUserDetails() 
