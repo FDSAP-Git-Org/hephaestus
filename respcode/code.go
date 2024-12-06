@@ -38,6 +38,9 @@ const (
 	ERR_CODE_102_CD     = "CD102"
 	ERR_CODE_102_CD_MSG = "Invalid signature."
 
+	ERR_CODE_103_CD     = "CD103"
+	ERR_CODE_103_CD_MSG = "Invalid vendor key."
+
 	ERR_CODE_101     = "101"
 	ERR_CODE_101_MSG = "First Login: Password Reset Required."
 
