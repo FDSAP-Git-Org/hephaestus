@@ -49,7 +49,10 @@ func IsEmailValid(email string) bool {
 }
 
 func GetResponseTime(c fiber.Ctx) string {
-	connTime := c.Context().ConnTime()
+	connTime, ok := c.Locals("connTime").(time.Time)
+	if !ok {
+		connTime = time.Now()
+	}
 	return connTime.Format(time.DateTime)
 }
 
