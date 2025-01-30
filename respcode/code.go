@@ -194,6 +194,9 @@ const (
 	ERR_CODE_406     = "406"
 	ERR_CODE_406_MSG = "Record not found."
 
+	ERR_CODE_409     = "409"
+	ERR_CODE_409_MSG = "Record already exists."
+
 	ERR_CODE_500     = "500"
 	ERR_CODE_500_MSG = "Restricted"
 
