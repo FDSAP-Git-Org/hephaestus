@@ -20,6 +20,7 @@ import (
 
 	"github.com/gofiber/fiber/v3"
 	"github.com/golang-jwt/jwt/v4"
+	"golang.org/x/crypto/bcrypt"
 
 	"github.com/joho/godotenv"
 )
@@ -250,4 +251,16 @@ func SendRequest(baseURL string, method string, body []byte, headers map[string]
 
 	// If neither parsing works, return an error
 	return nil, fmt.Errorf("response is neither a JSON object nor a JSON array: %s", string(body))
+}
+
+// HashPassword ...
+func HashData(data string) (string, error) {
+	bytes, err := bcrypt.GenerateFromPassword([]byte(data), 14)
+	return string(bytes), err
+}
+
+// CheckPasswordHash ...
+func CheckHashData(data, hash string) bool {
+	err := bcrypt.CompareHashAndPassword([]byte(hash), []byte(data))
+	return err == nil
 }
