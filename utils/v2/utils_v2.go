@@ -9,11 +9,18 @@ import (
 	"time"
 )
 
-func SendRequest(baseURL string, method string, body []byte, headers map[string]string, timeout int) (interface{}, error) {
+func SendRequest(baseURL string, method string, body []byte, headers map[string]string, queryParam map[string]interface{}, timeout int) (interface{}, error) {
 	reqBody := bytes.NewBuffer(body)
 
+	finalUrl := baseURL
+
+	for qkey, qvalue := range queryParam {
+		finalUrl = finalUrl + "?" + qkey + "=" + fmt.Sprint(qvalue)
+	}
+
+	fmt.Println("Final Url", finalUrl)
 	// Create the request
-	req, err := http.NewRequest(method, baseURL, reqBody)
+	req, err := http.NewRequest(method, finalUrl, reqBody)
 	if err != nil {
 		return nil, err
 	}
@@ -28,9 +35,7 @@ func SendRequest(baseURL string, method string, body []byte, headers map[string]
 		req.Header.Set(key, value)
 	}
 
-	client := &http.Client{
-		Timeout: time.Second * time.Duration(timeout),
-	}
+	client := &http.Client{Timeout: time.Second * time.Duration(timeout)}
 
 	// Send the request
 	resp, err := client.Do(req)
