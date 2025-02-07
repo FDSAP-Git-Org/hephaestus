@@ -1,4 +1,4 @@
-package utils
+package utils_v1
 
 import (
 	"bytes"
@@ -18,6 +18,7 @@ import (
 	"regexp"
 	"time"
 
+	"github.com/FDSAP-Git-Org/hephaestus/utils"
 	"github.com/gofiber/fiber/v3"
 	"github.com/golang-jwt/jwt/v4"
 	"golang.org/x/crypto/bcrypt"
@@ -69,7 +70,7 @@ func GenerateResponse(response interface{}, c fiber.Ctx) interface{} {
 	processTime := GetResponseTime(c)
 
 	// Create a new EPResponse object with the process time and request
-	return EPResponse{
+	return utils.EPResponse{
 		ProcessTime: processTime, // Set the process time
 		Request:     response,    // Set the request
 	}
