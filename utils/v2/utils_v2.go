@@ -7,6 +7,8 @@ import (
 	"io"
 	"net/http"
 	"time"
+
+	"github.com/google/uuid"
 )
 
 func SendRequest(baseURL string, method string, body []byte, headers map[string]string, queryParam map[string]interface{}, timeout int) (interface{}, error) {
@@ -69,4 +71,9 @@ func SendRequest(baseURL string, method string, body []byte, headers map[string]
 
 	// If neither parsing works, return an error
 	return nil, fmt.Errorf("response is neither a JSON object nor a JSON array: %s", string(body))
+}
+
+func GenerateUIID(appName string) string {
+	uiid := uuid.New()
+	return fmt.Sprintf("%s-%s", appName, uiid.String())
 }
