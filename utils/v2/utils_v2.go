@@ -81,16 +81,16 @@ func GenerateUIID(appName string) string {
 	return fmt.Sprintf("%s-%s", appName, uiid.String())
 }
 
-func GenerateSeal(message any, signingKey string) string {
-	convertedMessage, _ := json.Marshal(message)
+func GenerateSeal(digestMessage any, signingKey string) string {
+	convertedMessage, _ := json.Marshal(digestMessage)
 	key := []byte(signingKey)
 	h := hmac.New(sha256.New, key)
 	h.Write([]byte(convertedMessage))
 	return hex.EncodeToString(h.Sum(nil))
 }
 
-func ValidateSeal(vendorKey, receivedSeal string, requestTimestamp string, requestBody any, signingKey string) bool {
-	computedSeal := GenerateSeal(requestBody, signingKey)
+func ValidateSeal(signingKey, receivedSeal string, digestMessage any) bool {
+	computedSeal := GenerateSeal(digestMessage, signingKey)
 	fmt.Println("COMPUTED SEAL:", computedSeal)
 	// Use constant-time comparison to avoid timing attacks
 	return hmac.Equal([]byte(computedSeal), []byte(receivedSeal))
