@@ -108,7 +108,6 @@ func SystemLogger(class, folder, filename, process string, request, response int
 	fmt.Printf("New entry for %s: %v\n", strings.ToUpper(process), currentTime.Format(time.DateTime))
 	file.Close()
 }
-
 func ApplicationLogger(class, folder, filename, process, status string, request, response interface{}) {
 	// Checking folder name if exists
 	currentTime := time.Now()
