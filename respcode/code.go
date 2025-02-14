@@ -41,6 +41,12 @@ const (
 	ERR_CODE_103_CD     = "CD103"
 	ERR_CODE_103_CD_MSG = "Invalid vendor key."
 
+	ERR_CODE_104_CD     = "CD104"
+	ERR_CODE_104_CD_MSG = "Invalid api key."
+
+	ERR_CODE_105_CD     = "CD105"
+	ERR_CODE_105_CD_MSG = "Access denied."
+
 	ERR_CODE_101     = "101"
 	ERR_CODE_101_MSG = "First Login: Password Reset Required."
 
