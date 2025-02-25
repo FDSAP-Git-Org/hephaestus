@@ -5,7 +5,6 @@ import (
 
 	utils_v1 "github.com/FDSAP-Git-Org/hephaestus/utils/v1"
 )
-
 func JSONResponse(c fiber.Ctx, retCode, retMessage string, httpStatusCode int) error {
 	return c.Status(httpStatusCode).JSON(fiber.Map{
 		"responseTime": utils_v1.GetResponseTime(c),
@@ -14,7 +13,6 @@ func JSONResponse(c fiber.Ctx, retCode, retMessage string, httpStatusCode int) e
 		"message":      retMessage,
 	})
 }
-
 func JSONResponseWithData(c fiber.Ctx, retCode, retMessage string, data interface{}, httpStatusCode int) error {
 	return c.Status(httpStatusCode).JSON(fiber.Map{
 		"responseTime": utils_v1.GetResponseTime(c),
@@ -24,7 +22,6 @@ func JSONResponseWithData(c fiber.Ctx, retCode, retMessage string, data interfac
 		"data":         data,
 	})
 }
-
 func JSONResponseWithError(c fiber.Ctx, retCode, retMessage string, err error, httpStatusCode int) error {
 	return c.Status(httpStatusCode).JSON(fiber.Map{
 		"responseTime": utils_v1.GetResponseTime(c),
