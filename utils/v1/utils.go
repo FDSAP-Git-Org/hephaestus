@@ -258,7 +258,7 @@ func SendRequest(baseURL string, method string, body []byte, headers map[string]
 	return nil, fmt.Errorf("response is neither a JSON object nor a JSON array: %s", string(body))
 }
 
-func SendRequestWithRequest(baseURL string, method string, body []byte, headers map[string]string, timeout int) (interface{}, *string, error) {
+func SendRequestWithCode(baseURL string, method string, body []byte, headers map[string]string, timeout int) (interface{}, *string, error) {
 	reqBody := bytes.NewBuffer(body)
 
 	// Create the request
