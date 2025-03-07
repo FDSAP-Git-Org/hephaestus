@@ -9,6 +9,7 @@ import (
 	"fmt"
 	"io"
 	"net/http"
+	"net/url"
 	"time"
 
 	"github.com/google/uuid"
@@ -17,11 +18,13 @@ import (
 func SendRequest(baseURL string, method string, body []byte, headers map[string]string, queryParam map[string]interface{}, timeout int) (interface{}, error) {
 	reqBody := bytes.NewBuffer(body)
 
-	finalUrl := baseURL
-
+	// Use url.Values to construct query parameters properly
+	params := url.Values{}
 	for qkey, qvalue := range queryParam {
-		finalUrl = finalUrl + "?" + qkey + "=" + fmt.Sprint(qvalue)
+		params.Add(qkey, fmt.Sprint(qvalue))
 	}
+	
+	finalUrl := baseURL + "?" + params.Encode()
 
 	fmt.Println("Final Url", finalUrl)
 	// Create the request
