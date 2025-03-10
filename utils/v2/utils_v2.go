@@ -10,23 +10,33 @@ import (
 	"io"
 	"net/http"
 	"net/url"
+	"strings"
 	"time"
 
 	"github.com/google/uuid"
 )
 
-func SendRequest(baseURL string, method string, body []byte, headers map[string]string, queryParam map[string]interface{}, timeout int) (interface{}, error) {
-	reqBody := bytes.NewBuffer(body)
+func SendRequest(baseURL string, pathParams []string, method string, body []byte, headers map[string]string, queryParam map[string]interface{}, timeout int) (interface{}, error) {
+
+	// Construct the final URL with path parameters
+	finalUrl := strings.TrimRight(baseURL, "/")
+	if len(pathParams) > 0 {
+		finalUrl += "/" + strings.Join(pathParams, "/")
+	}
 
 	// Use url.Values to construct query parameters properly
 	params := url.Values{}
 	for qkey, qvalue := range queryParam {
 		params.Add(qkey, fmt.Sprint(qvalue))
 	}
-	
-	finalUrl := baseURL + "?" + params.Encode()
+
+	if len(params) > 0 {
+		finalUrl += "?" + params.Encode()
+	}
 
 	fmt.Println("Final Url", finalUrl)
+	reqBody := bytes.NewBuffer(body)
+
 	// Create the request
 	req, err := http.NewRequest(method, finalUrl, reqBody)
 	if err != nil {
