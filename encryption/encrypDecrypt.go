@@ -141,10 +141,11 @@ func EncryptV3(plaintext, key []byte) ([]byte, []byte, error) {
 }
 
 // DecryptV2 decrypts the ciphertext using AES-GCM.
-func DecryptV3(ciphertext, nonce, key []byte) ([]byte, error) {
+func DecryptV3(ciphertext, key []byte) ([]byte, error) {
 	aesGCM, err := createAESGCM(key)
 	if err != nil {
 		return nil, err
 	}
+	_, nonce, _ := EncryptV3(ciphertext, key)
 	return aesGCM.Open(nil, nonce, ciphertext, nil)
 }
