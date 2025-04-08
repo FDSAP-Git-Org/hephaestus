@@ -73,20 +73,23 @@ func SendRequest(baseURL string, pathParams []string, method string, body []byte
 		return nil, nil
 	}
 
-	// Try to parse response as JSON object
-	var jsonRespObject map[string]interface{}
-	if err := json.Unmarshal(body, &jsonRespObject); err == nil {
-		return jsonRespObject, nil
-	}
+	// Return raw JSON to preserve exact types
+	return json.RawMessage(body), nil
 
-	// If parsing as JSON object fails, try as JSON array
-	var jsonRespArray []interface{}
-	if err := json.Unmarshal(body, &jsonRespArray); err == nil {
-		return jsonRespArray, nil
-	}
+	// // Try to parse response as JSON object
+	// var jsonRespObject map[string]interface{}
+	// if err := json.Unmarshal(body, &jsonRespObject); err == nil {
+	// 	return jsonRespObject, nil
+	// }
 
-	// If neither parsing works, return an error
-	return nil, fmt.Errorf("response is neither a JSON object nor a JSON array: %s", string(body))
+	// // If parsing as JSON object fails, try as JSON array
+	// var jsonRespArray []interface{}
+	// if err := json.Unmarshal(body, &jsonRespArray); err == nil {
+	// 	return jsonRespArray, nil
+	// }
+
+	// // If neither parsing works, return an error
+	// return nil, fmt.Errorf("response is neither a JSON object nor a JSON array: %s", string(body))
 }
 
 func SendRequesWithStatus(baseURL string, method string, body []byte, headers map[string]string, queryParam map[string]interface{}, timeout int) (interface{}, *string, error) {
