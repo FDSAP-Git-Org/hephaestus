@@ -284,7 +284,7 @@ func SendRequestWithCode(baseURL string, method string, body []byte, headers map
 	// Send the request
 	resp, err := client.Do(req)
 	if err != nil {
-		return nil, &resp.Status, err
+		return nil, nil, err
 	}
 	defer resp.Body.Close()
 
