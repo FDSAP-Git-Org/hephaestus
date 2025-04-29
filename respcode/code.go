@@ -47,6 +47,9 @@ const (
 	ERR_CODE_105_CD     = "CD105"
 	ERR_CODE_105_CD_MSG = "Access denied."
 
+	ERR_CODE_106_CD     = "CD106"
+	ERR_CODE_106_CD_MSG = "Username or Email already exists."
+
 	ERR_CODE_101     = "101"
 	ERR_CODE_101_MSG = "First Login: Password Reset Required."
 
