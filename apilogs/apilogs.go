@@ -86,7 +86,7 @@ func CreateDirectory(path string) error {
 func SystemLogger(class, folder, filename, process string, request, response interface{}) {
 	// Checking folder name if exists
 	currentTime := time.Now()
-	folderName := "./logs/" + strings.ToUpper(folder) + "/" + currentTime.Format("01-January")
+	folderName := "./logs/" + folder + "/" + currentTime.Format("01-January")
 	CreateDirectory(folderName)
 	file, filErr := os.OpenFile(folderName+"/"+strings.ToLower(filename)+"-"+currentTime.Format("01022006")+".log", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0666)
 	if filErr != nil {
@@ -108,10 +108,10 @@ func SystemLogger(class, folder, filename, process string, request, response int
 	fmt.Printf("New entry for %s: %v\n", strings.ToUpper(process), currentTime.Format(time.DateTime))
 	file.Close()
 }
-func ApplicationLogger(class, folder, filename, process, status string, request, response interface{}) {
+func ApplicationLogger(class, folder, filename, process, status string, request, response any) {
 	// Checking folder name if exists
 	currentTime := time.Now()
-	folderName := "./logs/" + strings.ToUpper(folder) + "/" + currentTime.Format("01-January")
+	folderName := "./logs/" + folder + "/" + currentTime.Format("01-January")
 	CreateDirectory(folderName)
 	file, filErr := os.OpenFile(folderName+"/"+strings.ToLower(filename)+"-"+currentTime.Format("01022006")+".log", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0666)
 	if filErr != nil {
@@ -168,10 +168,10 @@ func ApplicationLogger(class, folder, filename, process, status string, request,
 // 2023/10/24 14:30:00 ERROR: TEST: REQUEST: {"key":"value"}
 // 2023/10/24 14:30:00 ERROR: TEST: CODE: 200
 // 2023/10/24 14:30:00 ERROR: TEST:
-func ApplicationErrorLogger(class, folder, filename, process, code string, request, err interface{}) {
+func ApplicationErrorLogger(class, folder, filename, process, code string, request, err any) {
 	// Checking folder name if exists
 	currentTime := time.Now()
-	folderName := "./logs/" + strings.ToUpper(folder) + "/" + currentTime.Format("01-January")
+	folderName := "./logs/" + folder + "/" + currentTime.Format("01-January")
 	CreateDirectory(folderName)
 	file, filErr := os.OpenFile(folderName+"/"+strings.ToLower(filename)+"-"+currentTime.Format("01022006")+".log", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0666)
 	if filErr != nil {
